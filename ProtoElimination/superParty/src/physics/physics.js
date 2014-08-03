@@ -158,11 +158,11 @@ function setupPhysicsMethods(Physics)
 		this.setupBody(body);
 		body.getWidth = function()
 		{
-			return this.scale*this.radius*2;
+			return this.transform.scale*this.radius*2;
 		}
 		body.getHeight = function()
 		{
-			return this.scale*this.radius*2;
+			return this.transform.scale*this.radius*2;
 		}
 		return body;
 	}
