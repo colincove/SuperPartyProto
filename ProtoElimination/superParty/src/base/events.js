@@ -13,6 +13,15 @@ Events.addEventListener = function(evt, func)
 
 	this[Events.getListTitle(evt)].push(func);
 }
+Events.removeEventListener = function(evt, func)
+{
+	if(this[Events.getListTitle(evt)] == null)
+	{
+		this[Events.getListTitle(evt)] = [];
+	}
+	
+	removeFromList(this[Events.getListTitle(evt)], func);
+}
 Events.getListTitle = function(evt)
 {
 	return evt+'_EVT_LIST';

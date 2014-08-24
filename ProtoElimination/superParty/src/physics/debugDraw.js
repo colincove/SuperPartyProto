@@ -12,7 +12,7 @@ Physics.debugDraw = function(e)
 	{
 		var body = Physics.bodies.lists.allBodies[i];
 		
-		if(body.type = BodyTypes.CIRCLE)
+		if(body.type == BodyTypes.CIRCLE)
 		{
 			Stage.superContext.beginPath();
 			Stage.superContext.arc(

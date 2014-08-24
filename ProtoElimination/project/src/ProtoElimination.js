@@ -4,7 +4,7 @@ SuperParty.onSetupComplete = doSetup;
 
 function doSetup()
 {
-	SuperParty.loadScripts(init, ['project/src/DemoLevel.js', 'project/src/monsterBasic.js', 'project/src/World.js', 'project/src/missile.js']);
+	SuperParty.loadScripts(init, ['project/src/DemoLevel.js', 'project/src/monsterBasic.js', 'project/src/World.js', 'project/src/missile.js', 'project/src/mouseClicker.js']);
 	
 	Stage.canvas.height = 300;
 	Stage.canvas.width = 550;
@@ -28,10 +28,10 @@ function startGame(e)
 	Looper.addEventListener(Looper.EVENT_DRAW_TICK, draw);
     Looper.addEventListener(Looper.EVENT_LOGIC_TICK, update);
 	
-	Physics.startDebugDraw();
+	//Physics.startDebugDraw();
 	
-	var world1 = getWorld(100,150);
-	var world2 = getWorld(450,150);
+	var world1 = getWorld(100,150, true);
+	var world2 = getWorld(450,150, false);
 	
 	world1.target = world2;
 	world2.target = world1;
@@ -41,11 +41,13 @@ function startGame(e)
 	context.setFillStyle("rgba(0, 0, 0)");
 	context.fill();
 	
+	mouseClicker = getMouseClicker();
+	
 	function draw()
     {
 		//reset canvas
 		Stage.context.rect(0,0,canvas.width,canvas.height);
-		context.setFillStyle("rgba(0, 0, 0, 0.1)");
+		context.setFillStyle("rgba(0, 0, 0, 0.05)");
 		context.fill();
     }
     function update()

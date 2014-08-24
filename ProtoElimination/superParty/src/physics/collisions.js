@@ -35,8 +35,8 @@ function setupCollisionMethods(obj)
 			{
 				var body2 = bodyList[j];
 
-				if(body1.isTrigger && body2.isTrigger) return;
-				if(body1.static && body2.static) return;
+				if(body1.isTrigger && body2.isTrigger) continue;
+				if(body1.static && body2.static) continue;
 
 				//order the bodies by type
 				if(body2.type < body1.type)

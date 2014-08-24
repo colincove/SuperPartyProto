@@ -16,10 +16,11 @@ setupPhysicsMethods(Physics);
 //-------------------------
 //Events
 //-------------------------
-Physics.EVENT_ON_LOITER = "EVENT_ON_LOITER";//when a physics body loiters within a trigger
-Physics.EVENT_ON_ENTER 	= "EVENT_ON_ENTER";//when a physics body enters a trigger
-Physics.EVENT_ON_EXIT 	= "EVENT_ON_EXIT";//when a physics body exits a trigger
-Physics.EVENT_COLLIDE 	= "EVENT_COLLIDE";//when 2 physics bodies collide
+Physics.EVENT_ON_LOITER 	= "EVENT_ON_LOITER";//when a physics body loiters within a trigger
+Physics.EVENT_ON_ENTER 		= "EVENT_ON_ENTER";//when a physics body enters a trigger
+Physics.EVENT_ON_EXIT 		= "EVENT_ON_EXIT";//when a physics body exits a trigger
+Physics.EVENT_COLLIDE 		= "EVENT_COLLIDE";//when 2 physics bodies collide
+Physics.EVENT_ON_DESTROYED 	= "EVENT_COLLIDE";//when a body has been destroyed through the physics system. 
 
 
 
@@ -43,6 +44,7 @@ function setupPhysicsMethods(Physics)
 			{
 				trigger.emitEvent(Physics.EVENT_ON_ENTER, {other:body});
 				trigger.collisionTable[body.UUID] = body;
+				body.triggerTable[trigger.UUID] = trigger;
 				trigger.activeCollisions = trigger.activeCollisions + 1;
 			}
 		}
@@ -50,6 +52,7 @@ function setupPhysicsMethods(Physics)
 		{
 			//2 physical bodies have collided. Resolve the collision in the physics world. 
 			Physics.solver.solve(body1, body2, type);
+			body1.emitEvent(Physics.EVENT_ON_ENTER, {other:body2});
 		}
 	}
 	//Collision engine calls this when 2 bodies are NOT touching.
@@ -63,7 +66,9 @@ function setupPhysicsMethods(Physics)
 			if(trigger.collisionTable[body.UUID])
 			{
 				trigger.emitEvent(Physics.EVENT_ON_EXIT, {other:body});
-				trigger.collisionTable[body.UUID] = undefined;
+				trigger.addEventListener(Physics.EVENT_ON_DESTROYED, Physics.tableCleanup); 
+				delete trigger.collisionTable[body.UUID];
+				delete body.triggerTable[trigger.UUID];
 				trigger.activeCollisions = trigger.activeCollisions - 1;
 			}
 		}
@@ -78,6 +83,11 @@ function setupPhysicsMethods(Physics)
 		var list = Physics.bodies.lists[body.type];
 		removeFromList(list, body);
 		removeFromList(Physics.bodies.lists.allBodies, body);
+		
+		for(var i in body.triggerTable)
+		{
+			Physics.collisionCleanup(body,body.triggerTable[i]);
+		}
 	}
 	Physics.bodies.addBody = function(body)
 	{
@@ -93,6 +103,7 @@ function setupPhysicsMethods(Physics)
 	Physics.bodies.config = 
 		{
 			collisionTable:{},
+			triggerTable:{},
 			type:BodyTypes.POINT,
 			sleeping:false,
 			isTrigger:false,
@@ -129,18 +140,18 @@ function setupPhysicsMethods(Physics)
 				}
 			}
 		};
-	Physics.bodies.circleConfig = $.extend( true, Physics.bodies.config,
+	Physics.bodies.circleConfig = $.extend( true, {}, Physics.bodies.config,
 		{
 			type:BodyTypes.CIRCLE, 
 			radius:1
 		} );
-	Physics.bodies.boxConfig = $.extend( true, Physics.bodies.config, 
+	Physics.bodies.boxConfig = $.extend( true, {},Physics.bodies.config, 
 		{
 			type:BodyTypes.BOX, 
 			width:1, 
 			height:1
 		} );
-	Physics.bodies.polygonConfig = $.extend( true, Physics.bodies.config, 
+	Physics.bodies.polygonConfig = $.extend( true, {},Physics.bodies.config, 
 		{
 			type:BodyTypes.POLYGON, 
 			vertices:[],
