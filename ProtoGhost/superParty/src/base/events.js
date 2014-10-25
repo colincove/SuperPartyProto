@@ -2,6 +2,7 @@ var Events 			= {};
 Events.setup = function(obj)
 {
 	obj.addEventListener 	= Events.addEventListener;
+	obj.removeEventListener = Events.removeEventListener;
 	obj.emitEvent 			= Events.emitEvent;
 }
 Events.addEventListener = function(evt, func)
