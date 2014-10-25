@@ -1,10 +1,12 @@
 var Emitter = {};
-
+Emitter.emitters = [];
 Emitter.create = function()
 {
 	var emitter = {angle:0, force:10, frequency:50, x:0, y:0, radius:20};
 
 	emitter.nodes = [];
+
+	Emitter.emitters.push(emitter);
 
 	setup();
 
@@ -101,6 +103,7 @@ Emitter.create = function()
 			Looper.removeEventListener(Looper.EVENT_LOGIC_TICK, this.update);
 			emitter.activeArea.removeEventListener(Physics.EVENT_ON_ENTER, emitter.onActiveEnter);
 			emitter.activeArea.removeEventListener(Physics.EVENT_ON_EXIT, emitter.onActiveExit);
+			Emitter.emitters.splice(Emitter.emitters.indexOf(emitter), 1);
 		}
 	}
 	

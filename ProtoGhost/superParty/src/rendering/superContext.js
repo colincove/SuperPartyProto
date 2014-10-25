@@ -27,8 +27,9 @@ function setupSuperContext(context)
 	ctx.createPattern = function()
 	{
 	}
-	ctx.createRadialGradient = function()
+	ctx.createRadialGradient = function(x1, y1, r1, x2, y2, r2)
 	{
+		return Stage.context.createRadialGradient(x1-Stage.cam.x, y1-Stage.cam.y, r1, x2-Stage.cam.x, y2-Stage.cam.y, r2);
 	}
 	ctx.addColorStop = function()
 	{
