@@ -4,10 +4,10 @@ SuperParty.onSetupComplete = doSetup;
 
 function doSetup()
 {
-	SuperParty.loadScripts(init, ['project/src/Player.js', 'project/src/Ghost.js', 'project/src/Level.js']);
+	SuperParty.loadScripts(init, ['project/src/Player.js', 'project/src/Ghost.js', 'project/src/Level.js', 'project/src/Emitter.js', "project/src/stackBlur.js"]);
 	
 	Stage.canvas.height = 400;
-	Stage.canvas.width = 600;
+	Stage.canvas.width = 800;
 }
 function init()
 {
@@ -22,7 +22,7 @@ function startGame(e)
 	var canvas 	= Stage.canvas;
     var context = Stage.superContext;
 
-    setupLevel();
+    var level = setupLevel();
 
 	Looper.addEventListener(Looper.EVENT_DRAW_TICK, draw);
     Looper.addEventListener(Looper.EVENT_LOGIC_TICK, update);
@@ -30,6 +30,7 @@ function startGame(e)
 	Physics.startDebugDraw();
 
 	var player = Player.createPlayer();
+	Physics.gravity.y = 1.5;
 	
 	function draw()
     {
@@ -37,10 +38,12 @@ function startGame(e)
 		Stage.context.rect(0,0,canvas.width,canvas.height);
 		context.setFillStyle("rgb(0, 0, 0)");
 		context.fill();
-
+		stackBlurCanvasRGB( "stage", 0, 0, Stage.canvas.width, Stage.canvas.height, 20);
 
     }
     function update()
     {
+    	 Stage.cam.x += ((player.body.transform.position.x-canvas.width/2)-Stage.cam.x)/5;
+        Stage.cam.y += ((player.body.transform.position.y-canvas.height/2)-Stage.cam.y)/5;
     }
 }
