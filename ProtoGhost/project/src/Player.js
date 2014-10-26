@@ -7,7 +7,7 @@ Player.createPlayer = function()
 	fric = 1.2;
 
 	//monster.body = Physics.bodies.getCircle({radius:8, isTrigger:false, damp:0.2});
-	player.body = Physics.bodies.getBox({width:12, height:12, drag:1.005, isTrigger:false, collisionGroup:"player",  damp:15, transform:{position:{x:200, y:200}}});
+	player.body = Physics.bodies.getBox({width:25, height:25, drag:1.005, isTrigger:false, collisionGroup:"player",  damp:15, transform:{position:{x:200, y:200}}});
 	player.footTrigger = Physics.bodies.getBox({width:4, height:2, isTrigger:true});
 	player.acc = 0.8;
 	player.maxSpeed = 10;

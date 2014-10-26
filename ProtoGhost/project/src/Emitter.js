@@ -2,7 +2,7 @@ var Emitter = {};
 Emitter.emitters = [];
 Emitter.create = function()
 {
-	var emitter = {angle:0, force:10, frequency:50, x:0, y:0, radius:20};
+	var emitter = {angle:0, force:10, frequency:50, x:0, y:0, radius:20, active:false};
 
 	emitter.nodes = [];
 
@@ -38,11 +38,13 @@ Emitter.create = function()
 		emitter.stop = function()
 		{
 			clearInterval(emitter.timer);
+			emitter.active = false;
 		}
 
 		emitter.start = function()
 		{
 			emitter.timer = setInterval(emitter.emit, emitter.frequency);
+			emitter.active = true;
 		}
 
 		emitter.emit = function()

@@ -32,14 +32,14 @@ function startGame(e)
     tmpCanvas.width = Stage.canvas.width;
     tmpCanvas.height = Stage.canvas.height;
     tmpCanvas.setAttribute("id", "tmp-canvas");
-    document.getElementsByTagName('body')[0].appendChild(tmpCanvas);
+    //document.getElementsByTagName('body')[0].appendChild(tmpCanvas);
     var tmpCtx = tmpCanvas.getContext("2d");
 
     var bufferCanvas = document.createElement("canvas");
     bufferCanvas.width = Stage.canvas.width;
     bufferCanvas.height = Stage.canvas.height;
     bufferCanvas.setAttribute("id", "tmp-canvas");
-    document.getElementsByTagName('body')[0].appendChild(bufferCanvas);
+    //document.getElementsByTagName('body')[0].appendChild(bufferCanvas);
     var bufferCtx = bufferCanvas.getContext("2d");
 
     var level = setupLevel();
@@ -67,7 +67,7 @@ function startGame(e)
 		bufferCtx.fill();
 
 		tmpCtx.rect(0,0,canvas.width,canvas.height);
-		tmpCtx.fillStyle = "rgba(0, 0, 0, 0.2)";
+		tmpCtx.fillStyle = "rgb(0, 0, 0)";
 		tmpCtx.fill();
 
 		//tmpCtx.clearRect ( 0 , 0 , canvas.width , canvas.height );
@@ -75,12 +75,13 @@ function startGame(e)
 		for(var i in Emitter.emitters)
 		{
 			var emitter = Emitter.emitters[i];
+			if(!emitter.active)continue;
 			for(var j in emitter.nodes)
 			{
 				var body = emitter.nodes[j];
 				tmpCtx.beginPath();
 
-				var r = 40;
+				var r = 60;
 
 				var grd=tmpCtx.createRadialGradient(
 					body.transform.position.x-Stage.cam.x,
@@ -89,8 +90,8 @@ function startGame(e)
 					body.transform.position.x-Stage.cam.x,
 					body.transform.position.y-Stage.cam.y,
 					r);
-				grd.addColorStop(0,'rgba(255, 0, 255,1)');
-				grd.addColorStop(1,'rgba(255, 0, 255, 0)');
+				grd.addColorStop(0,'rgba(255, 255, 255,1)');
+				grd.addColorStop(1,'rgba(255, 255, 255, 0)');
 
 
 				// Fill with gradient
@@ -113,8 +114,26 @@ function startGame(e)
 			
 		}
 		//Filters.threshold(tmpCtx.getImageData(0,0,Stage.canvas.width,Stage.canvas.height), 200);
-		metabalize(bufferCtx, tmpCtx, Stage.canvas.width, Stage.canvas.height, 50);
+		metabalize(bufferCtx, tmpCtx, Stage.canvas.width, Stage.canvas.height, 200);
 		//metabalize(Stage.canvas, tmpCanvas, Stage.canvas.width, Stage.canvas.height, 200);
+		var imgData = bufferCtx.getImageData(0,0,Stage.canvas.width,Stage.canvas.height);
+		 var d = imgData.data;
+		 var d2 = Stage.context.getImageData(0,0,Stage.canvas.width,Stage.canvas.height).data;
+		  for (var i=0; i<d.length; i+=4) 
+		  {
+		  	if(d[i]==0)
+	  		{
+	  			d[i] = d2[i];
+	  			d[i+1] = d2[i+1];
+	  			d[i+2] = d2[i+2];
+	  		}
+		    /*var r = d[i];
+		    var g = d[i+1];
+		    var b = d[i+2];
+		    var v = (0.2126*r + 0.7152*g + 0.0722*b >= threshold) ? 255 : 0;
+		    d[i] = d[i+1] = d[i+2] = v*/
+		  }
+		  Stage.context.putImageData(imgData, 0, 0); 
 
     }
     function blurScreen(e)
