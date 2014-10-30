@@ -18,11 +18,12 @@ function setupLevel()
 
 	var emitter = createEmitter(600,200);
 	emitter.angle=-90;
-	emitter.force = 30;
+	emitter.force = 5;
 
 	var emitter = createEmitter(30,100);
-	emitter.force = 30;
-	emitter.radius = 5;
+	emitter.force = 10;
+	emitter.angle = 20;
+	emitter.radius = 20;
 
 
 	function createEmitter(x, y)
@@ -30,6 +31,8 @@ function setupLevel()
 		var emitter = Emitter.create();
 		emitter.setPosition(x, y);
 		emitter.radius = 30;
+		emitter.frequency = 100;
+		emitter.gravity = {x:0, y:0.2};
 		emitter.force=20;
 		return emitter;
 	}

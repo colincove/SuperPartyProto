@@ -22,6 +22,11 @@ function setupSimpleSolverMethods(SimpleSolver)
 		{
 			this.boxToBox(body1, body2);
 		}
+		else if ((body1.type==BodyTypes.BOX &&  body2.type==BodyTypes.CIRCLE)
+			||(body2.type==BodyTypes.BOX &&  body1.type==BodyTypes.CIRCLE)) 
+		{
+			this.boxToBox(body1, body2);
+		}
 		else if ((type & BodyTypes.CIRCLE) || (type & BodyTypes.BOX)) 
 		{
 			this.circleToBox(body1, body2);
@@ -53,9 +58,7 @@ function setupSimpleSolverMethods(SimpleSolver)
 		c2.transform.setPosition(c2.transform.position.x+cos*c2vd, c2.transform.position.y+sin*c2vd);
 		
 		//c1.transform.setVelocity(c1.transform.velocity.x*-1, c1.transform.velocity.y*-1);
-		//c2.transform.setVelocity(c2.transform.velocity.x*-1, c2.transform.velocity.y*-1);
-		
-		
+		//c2.trans 		
 		
 		//resolving velocity
 		var c1_val_d = Math.sqrt(c1.transform.velocity.x*c1.transform.velocity.x+c1.transform.velocity.y*c1.transform.velocity.y);

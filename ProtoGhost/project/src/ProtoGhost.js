@@ -10,7 +10,8 @@ function doSetup()
 		'project/src/Level.js', 
 		'project/src/Emitter.js', 
 		'project/src/stackBlur.js', 
-		'project/src/metabalize.js']);
+		'project/src/metabalize.js', 
+		'project/src/pump.js']);
 	
 	Stage.canvas.height = 400;
 	Stage.canvas.width = 800;
@@ -53,6 +54,7 @@ function startGame(e)
 
 	var player = Player.createPlayer();
 	Physics.gravity.y = 1.5;
+	var pump = Pump.create(player);
 	
 	function draw(e)
     {
@@ -81,7 +83,7 @@ function startGame(e)
 				var body = emitter.nodes[j];
 				tmpCtx.beginPath();
 
-				var r = 60;
+				var r = 40;
 
 				var grd=tmpCtx.createRadialGradient(
 					body.transform.position.x-Stage.cam.x,

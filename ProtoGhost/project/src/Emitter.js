@@ -2,7 +2,7 @@ var Emitter = {};
 Emitter.emitters = [];
 Emitter.create = function()
 {
-	var emitter = {angle:0, force:10, frequency:50, x:0, y:0, radius:20, active:false};
+	var emitter = {angle:0, force:10, frequency:50, x:0, y:0, radius:20, active:false, gravity:Physics.gravity};
 
 	emitter.nodes = [];
 
@@ -49,35 +49,55 @@ Emitter.create = function()
 
 		emitter.emit = function()
 		{
-			var node = Physics.bodies.getBox({drag:1.15, height:10, width:10, isTrigger:true, transform:{position:{x:800, y:300}}});
+			//var node = Physics.bodies.getCircle({radius:5, drag:1.15, height:10, width:10, isTrigger:true, transform:{position:{x:800, y:300}}});
+			//var node = Physics.bodies.getBox({drag:1.15, height:10, width:10, isTrigger:true, transform:{position:{x:800, y:300}}});
+			var node = Physics.bodies.getBox({drag:1.05, height:10, width:10, isTrigger:true, transform:{position:{x:800, y:300}}});
+
+
+
 			node.addEventListener(Physics.EVENT_ON_ENTER, emitter.nodeCollide);
 			node.transform.setPosition(emitter.x+(Math.random()*emitter.radius-Math.random()*emitter.radius), emitter.y+(Math.random()*emitter.radius-Math.random()*emitter.radius));
 			node.transform.setVelocity(Math.cos(emitter.angle*(Math.PI/180))*emitter.force, Math.sin(emitter.angle*(Math.PI/180))*emitter.force);
+
+			node.stationary = false;
+			node.interval = 15;
 
 			emitter.nodes.push(node);
 		}
 
 		emitter.update = function()
 		{
-			for(var i in emitter.nodes)
+			for(var i = 0; i < emitter.nodes.length; i++)
 			{
 				var node =  emitter.nodes[i];
+				if(node.stationary)
+				{
+					if(node.interval-- <=0 )
+					{
+						Physics.bodies.destroyBody(node);
+						emitter.nodes.splice(emitter.nodes.indexOf(node), 1);
+						i--;
+					}
+				}
+				else
+				{
+					node.transform.move(node.transform.velocity.x, node.transform.velocity.y);
 
-				node.transform.move(node.transform.velocity.x, node.transform.velocity.y);
-
-				node.transform.setVelocity(
-					node.transform.velocity.x/node.drag+
-					Physics.gravity.x, 
-					node.transform.velocity.y/node.drag+
-					Physics.gravity.y);	
+					node.transform.setVelocity(
+						node.transform.velocity.x/node.drag+
+						emitter.gravity.x, 
+						node.transform.velocity.y/node.drag+
+						emitter.gravity.y);	
+				}
 			}
 		}
 
 		emitter.nodeCollide = function(e)
 		{
 			e.target.removeEventListener(Physics.EVENT_ON_ENTER, emitter.nodeCollide);
-			Physics.bodies.destroyBody(e.target);
-			emitter.nodes.splice(emitter.nodes.indexOf(e.target), 1);
+			e.target.stationary = true;
+			
+			
 
 		}
 

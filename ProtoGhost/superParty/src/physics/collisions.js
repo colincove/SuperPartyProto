@@ -111,6 +111,7 @@ function setupCollisionMethods(obj)
 	//http://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection
 	obj.collideCircleToBox = function(c, b)
 	{
+		return obj.collideBoxToBox(c, b);
 		var circleDistance = {};
 	    circleDistance.x = Math.abs(c.transform.position.x - b.transform.position.x);
 	    circleDistance.y = Math.abs(c.transform.position.y - b.transform.position.y);
