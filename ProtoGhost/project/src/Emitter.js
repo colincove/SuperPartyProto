@@ -94,11 +94,11 @@ Emitter.create = function()
 
 		emitter.nodeCollide = function(e)
 		{
-			e.target.removeEventListener(Physics.EVENT_ON_ENTER, emitter.nodeCollide);
-			e.target.stationary = true;
-			
-			
-
+			if(e.other.collisionGroup == "ground")
+			{
+				e.target.removeEventListener(Physics.EVENT_ON_ENTER, emitter.nodeCollide);
+				e.target.stationary = true;
+			}
 		}
 
 		emitter.onActiveEnter = function(e)
