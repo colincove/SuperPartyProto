@@ -2,7 +2,7 @@ var Emitter = {};
 Emitter.emitters = [];
 Emitter.create = function()
 {
-	var emitter = {angle:0, force:10, frequency:50, x:0, y:0, radius:20, active:false, gravity:Physics.gravity};
+	var emitter = {angle:0, force:10, frequency:50, x:0, y:0, radius:20, active:false, gravity:Physics.gravity, collisionGroup:"liquid"};
 
 	emitter.nodes = [];
 
@@ -43,6 +43,7 @@ Emitter.create = function()
 
 		emitter.start = function()
 		{
+            if(emitter.active) return;
 			emitter.timer = setInterval(emitter.emit, emitter.frequency);
 			emitter.active = true;
 		}
@@ -51,7 +52,7 @@ Emitter.create = function()
 		{
 			//var node = Physics.bodies.getCircle({radius:5, drag:1.15, height:10, width:10, isTrigger:true, transform:{position:{x:800, y:300}}});
 			//var node = Physics.bodies.getBox({drag:1.15, height:10, width:10, isTrigger:true, transform:{position:{x:800, y:300}}});
-			var node = Physics.bodies.getBox({drag:1.05, height:10, width:10, isTrigger:true, transform:{position:{x:800, y:300}}});
+			var node = Physics.bodies.getBox({drag:1.05, height:10, width:10, isTrigger:true, transform:{position:{x:800, y:300}}, collisionGroup:emitter.collisionGroup});
 
 
 
@@ -94,6 +95,7 @@ Emitter.create = function()
 
 		emitter.nodeCollide = function(e)
 		{
+            if(e.target.collisionGroup == e.other.collisionGroup) return;
 			e.target.removeEventListener(Physics.EVENT_ON_ENTER, emitter.nodeCollide);
 			e.target.stationary = true;
 			

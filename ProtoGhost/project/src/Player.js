@@ -15,6 +15,16 @@ Player.createPlayer = function()
 	player.body.fric = fric;
 	player.jumpStrength = 8;
 	player.jumpRepeatStrength = 2;
+    
+    //pump
+    player.pumpEmitter = Emitter.create();
+    player.pumpEmitter.setPosition(0, 0);
+    player.pumpEmitter.radius = 20;
+    player.pumpEmitter.frequency = 100;
+    player.pumpEmitter.gravity = {x:0, y:0.2};
+    player.pumpEmitter.force=15;
+    player.pumpEmitter.collisionGroup = "player";
+    player.pumpEmitter.stop();
 
 	//Gameplay
 	player.suck = false;
@@ -103,6 +113,8 @@ Player.createPlayer = function()
         	player.body.fric = 1;
             player.body.transform.setVelocity(player.body.transform.velocity.x-player.acc, player.body.transform.velocity.y);
         }
+        player.pumpEmitter.x = player.body.transform.position.x;
+        player.pumpEmitter.y = player.body.transform.position.y;
 	});
 
 	
@@ -137,6 +149,7 @@ Player.createPlayer = function()
 	{
 		if(!player.suck)
 		{
+            player.pumpEmitter.start();
 			player.blow = true;
 		}
 	}
@@ -154,6 +167,7 @@ Player.createPlayer = function()
 	}
 	function stopBlow()
 	{
+        player.pumpEmitter.stop();
 		player.blow = false;
 	}
 

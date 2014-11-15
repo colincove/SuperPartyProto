@@ -17,7 +17,7 @@ Pump.create = function (player)
 	}
 	function doBlow()
 	{
-		for(var i in Emitter.emitters)
+		/*for(var i in Emitter.emitters)
 		{
 			var emitter = Emitter.emitter[i];
 			if(emitter.active)
@@ -27,7 +27,7 @@ Pump.create = function (player)
 					
 				}
 			}
-		}
+		}*/
 	}
 	function doSuck()
 	{
