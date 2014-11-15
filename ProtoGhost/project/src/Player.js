@@ -29,6 +29,8 @@ Player.createPlayer = function()
 	//Gameplay
 	player.suck = false;
 	player.blow = false;
+	player.burstPress = false;
+	player.burst = false;
 	player.dir = 1;
 
 	var jumpRepeatMax = 7;
@@ -47,6 +49,11 @@ Player.createPlayer = function()
 
 	Looper.addEventListener(Looper.EVENT_DRAW_TICK, function(e)
 	{
+		var ctx = Stage.superContext;
+		ctx.beginPath();
+		ctx.setFillStyle("rgb(150, 150, 150)");
+		ctx.rect(player.body.transform.position.x,player.body.transform.position.y,player.body.getWidth(),player.body.getHeight());
+		ctx.fill();
 	});
 
 	directionInput.up.onPress = function()
@@ -131,6 +138,12 @@ Player.createPlayer = function()
 			doSuck();
 		}
 		console.log(e.keyCode);
+
+		if(e.keyCode == 32 && !player.burstPress)
+		{
+			player.burstPress = true;
+			player.burst = true;
+		}
 	}
 	function onKeyUp(e)
 	{
@@ -142,6 +155,10 @@ Player.createPlayer = function()
 		else if(e.keyCode == 79)
 		{
 			stopSuck();
+		}
+		if(e.keyCode == 32)
+		{
+			player.burstPress = false;
 		}
 	}
 

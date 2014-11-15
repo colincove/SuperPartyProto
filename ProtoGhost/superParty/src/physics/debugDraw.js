@@ -42,6 +42,8 @@ Physics.debugDraw = function(e)
 				body.transform.position.x, 
 				body.transform.position.y);
 
+			
+			
 			Stage.superContext.lineTo(body.transform.position.x+body.getWidth(), body.transform.position.y);
 			Stage.superContext.lineTo(body.transform.position.x+body.getWidth(), body.transform.position.y+body.getHeight());
 			Stage.superContext.lineTo(body.transform.position.x, body.transform.position.y+body.getHeight());
