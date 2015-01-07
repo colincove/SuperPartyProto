@@ -27,6 +27,8 @@ FileLoader.readFile = function(urls, scriptCallback, onComplete)
     }
     function loadUrl(url, callback)
     {
-        $.get(url, function(data) {callback(url, data)});
+        $.get(url, function(data) {callback(url, data)}).fail(function(e) {
+    if(e.status == 200) callback(url, e.responseText);
+  });
     }
 }

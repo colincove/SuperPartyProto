@@ -1,5 +1,5 @@
 var frame = 1;
-var tileSize = 128;
+
 var xOffset = -30;
 var yOffset = -22;
 var frameChange = 0;
@@ -7,6 +7,7 @@ var flipOffset = 0;
 
 function draw(e)
 {
+    var tileSize = 128;
     var canvas 	= Stage.canvas;
     var context = Stage.superContext;
  

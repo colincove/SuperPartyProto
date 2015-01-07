@@ -1,7 +1,7 @@
 SuperParty.onSetupComplete = doSetup;
 SuperParty.projectName = "ProtoShooter";
 
-var tileSize = 56;
+var levelTileSize = 56;
 var splashStarted = false;
 
 var camOffset = {x:30, y:20};
@@ -51,7 +51,7 @@ function startGame(e)
         {
        
         
-            for(var i in levelRows)
+            for(var i =0; i<levelRows.length; i++)
             {
                 var row = levelRows[i];
                 for(var j =0; j<row.length; j++)
@@ -60,13 +60,13 @@ function startGame(e)
                     switch(char)
                     {
                             case 'A':
-                                context.drawImage(R.drawable.basicTile, 0, 0, tileSize, tileSize, j*tileSize, i*tileSize, tileSize, tileSize);
+                                context.drawImage(R.drawable.basicTile, 0, 0, levelTileSize, levelTileSize, j*levelTileSize, i*levelTileSize, levelTileSize, levelTileSize);
                             break;
                              case 'B':
-                                context.drawImage(R.drawable.basicTile, tileSize, 0, tileSize, tileSize, j*tileSize, i*tileSize, tileSize, tileSize);
+                                context.drawImage(R.drawable.basicTile, levelTileSize, 0, levelTileSize, levelTileSize, j*levelTileSize, i*levelTileSize, levelTileSize, levelTileSize);
                             break;
                              case 'C':
-                                context.drawImage(R.drawable.basicTile, tileSize*2, 0, tileSize, tileSize, j*tileSize, i*tileSize, tileSize, tileSize);
+                                context.drawImage(R.drawable.basicTile, levelTileSize*2, 0, levelTileSize, levelTileSize, j*levelTileSize, i*levelTileSize, levelTileSize, levelTileSize);
                             break;
                     }
                 }
@@ -103,8 +103,8 @@ function startGame(e)
                     switch(char)
                     {
                             case 'A':
-                                Physics.bodies.getBox({collisionGroup:"ground", height:tileSize, width:tileSize, static:true, transform:{position:{x:j*tileSize, y:i*tileSize}}});
-                               // context.drawImage(R.drawable.basicTile, 0, 0, tileSize, tileSize, j*tileSize, i*tileSize, tileSize, tileSize);
+                                Physics.bodies.getBox({collisionGroup:"ground", height:levelTileSize, width:levelTileSize, static:true, transform:{position:{x:j*levelTileSize, y:i*levelTileSize}}});
+                               // context.drawImage(R.drawable.basicTile, 0, 0, levelTileSize, levelTileSize, j*levelTileSize, i*levelTileSize, levelTileSize, levelTileSize);
                     }
                 }
             }
