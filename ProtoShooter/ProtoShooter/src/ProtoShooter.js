@@ -2,10 +2,13 @@ SuperParty.onSetupComplete = doSetup;
 SuperParty.projectName = "ProtoShooter";
 
 var tileSize = 56;
+var splashStarted = false;
+
+var camOffset = {x:30, y:20};
 
 function doSetup()
 {
-	SuperParty.loadScripts(init, ['ProtoShooter/src/DemoLevel.js']);
+	SuperParty.loadScripts(init, ['ProtoShooter/src/DemoLevel.js', 'ProtoShooter/src/splashEffect.js']);
 }
 function init()
 {
@@ -24,8 +27,8 @@ function startGame(e)
 	var canvas 	= Stage.canvas;
     var context = Stage.superContext;
     
-    canvas.width = 975;
-    canvas.height = 500;
+    canvas.width = 600;
+    canvas.height = 350;
     
     FileLoader.readFile("ProtoShooter/res/levelDef.txt", levelLoaded);
     
@@ -70,13 +73,20 @@ function startGame(e)
             }
         }
     }
+    
     function update()
     {
         //DO this in a proper script
-        //Stage.cam.x += ((userMonster.body.transform.position.x-canvas.width/2)-Stage.cam.x)/5;
-        //Stage.cam.y += ((userMonster.body.transform.position.y-canvas.height/2)-Stage.cam.y)/5;
+        Stage.cam.x += (((hero.body.transform.position.x+camOffset.x)-Stage.canvas.width/2)-Stage.cam.x)/5;
+        Stage.cam.y += (((hero.body.transform.position.y+camOffset.y)-Stage.canvas.height/2)-Stage.cam.y)/5;
 		
-		
+		if(hero.body.transform.position.y > 0 && !splashStarted)
+        {
+            splashStarted = true;
+            SplashEffect.start();
+            hero.body.transform.setVelocity(0, -3);
+            //hero.body.transform.velocity.y = hero.body.transform.velocity.y*0.0;
+        }
     }
     function levelLoaded(url, data)
     {
@@ -100,5 +110,11 @@ function startGame(e)
             }
     }
     //var testObj = Prefab.instantiate(Prefab.prefabs['testPrefab']);
-    var hero = Prefab.instantiate(Prefab.prefabs['hero']);    
+    var hero = Prefab.instantiate(Prefab.prefabs['hero']); 
+    
+    
+    hero.body.transform.setPosition(0, -300);
+    
+     Stage.cam.x = (hero.body.transform.position.x+camOffset.x)-Stage.canvas.width/2;
+        Stage.cam.y = (hero.body.transform.position.y+camOffset.y)-Stage.canvas.height/2;
 }

@@ -2,9 +2,9 @@ var footTrigger;
 var acc = 1;
 var maxSpeed = 5;
 var jumpRepeat = 0;
-var jumpRepeatMax = 5;
+var jumpRepeatMax = 20;
 var fric = 1;
-var jumpRepeatStrength = 1;
+var jumpRepeatStrength = 6;
 var jumpStrength = 5;
 var directionInput = Input.getStandardDirectionInput({wasd:true});
 function update(e)
@@ -84,5 +84,6 @@ function canJump()
 
 function jump(strength)
 {
-    gameObject.body.transform.applyForce(0, -strength);
+    gameObject.body.transform.setVelocity(gameObject.body.transform.velocity.x, -strength);
+   // gameObject.body.transform.applyForce(0, -strength);
 }
