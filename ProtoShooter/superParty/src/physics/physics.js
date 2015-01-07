@@ -54,6 +54,7 @@ function setupPhysicsMethods(Physics)
 			//2 physical bodies have collided. Resolve the collision in the physics world. 
 			Physics.solver.solve(body1, body2, type);
 			body1.emitEvent(Physics.EVENT_ON_ENTER, {other:body2});
+            body2.emitEvent(Physics.EVENT_ON_ENTER, {other:body1});
 		}
 	}
 	//Collision engine calls this when 2 bodies are NOT touching.

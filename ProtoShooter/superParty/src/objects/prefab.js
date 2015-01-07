@@ -89,6 +89,40 @@ Prefab.instantiate = function(def)
         }
          gameObject.message("draw", e);
     }
+    if(gameObject.body)
+    {
+        gameObject.body.addEventListener(Physics.EVENT_ON_ENTER, onCollide);
+        gameObject.body.addEventListener(Physics.EVENT_ON_EXIT, onExit);
+    }
+    
+    gameObject.destroy = function()
+    {
+        if(gameObject.body)
+        {
+            gameObject.body.removeEventListener(Physics.EVENT_ON_ENTER, onCollide);
+            gameObject.body.removeEventListener(Physics.EVENT_ON_EXIT, onExit);
+            Physics.bodies.destroyBody(gameObject.body);
+        }
+        Looper.removeEventListener(Looper.EVENT_LOGIC_TICK, update);
+        Looper.removeEventListener(Looper.EVENT_DRAW_TICK, draw);
+        
+        for(var i in gameObject.triggers)
+        {
+             Physics.bodies.destroyBody(gameObject.triggers[i]);
+        }
+        
+        gameObject.message("destroy", {});
+    }
+    function onCollide(e)
+    {
+        gameObject.message("CollisionOnEnter", {});
+    }
+    function onExit(e)
+    {
+        gameObject.message("CollisionOnExit", {});
+    }
+    
+    if(gameObject.body) gameObject.body.gameObject = gameObject;
     
     return gameObject;
 }

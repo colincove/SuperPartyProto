@@ -1,3 +1,6 @@
 testScript.js
 samusController.js
 drawRobot.js
+gun.js
+projectile.js
+samusProjectileView.js

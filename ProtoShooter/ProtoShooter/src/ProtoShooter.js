@@ -15,6 +15,7 @@ function init()
 	Resources.addImage('monster', 'ProtoShooter/res/microbe.png');
     Resources.addImage('basicTile', 'ProtoShooter/res/basic-tile.png');
     Resources.addImage('heroSprite', 'ProtoShooter/res/robot-sprite.png');
+    Resources.addImage('samusProjectile', 'ProtoShooter/res/samus-projectile.png');
 	
 	Resources.startLoad();
 }
