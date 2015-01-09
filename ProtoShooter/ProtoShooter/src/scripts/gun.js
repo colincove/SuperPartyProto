@@ -22,11 +22,11 @@ function onKeyDown(e)
 function shoot()
 {
     var bullet = Prefab.instantiate(Prefab.prefabs[projectile]);
-    bullet.dir = attachedTo.gameObject.dir;
-    bullet.body.transform.setPosition(attachedTo.transform.position.x + spawnX * attachedTo.gameObject.dir, attachedTo.transform.position.y + spawnY);
+    bullet.dir = gameObject.dir;
+    bullet.body.transform.setPosition(gameObject.body.transform.position.x + spawnX * gameObject.dir, gameObject.body.transform.position.y + spawnY);
     if(bullet.dir == -1)
     {
-        bullet.body.transform.setPosition(attachedTo.transform.position.x + -20, attachedTo.transform.position.y + spawnY);
+        bullet.body.transform.setPosition(gameObject.body.transform.position.x + -20, gameObject.body.transform.position.y + spawnY);
     }
     if(gameObject.isCrouching)
     {

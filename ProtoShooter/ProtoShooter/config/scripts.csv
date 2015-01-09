@@ -4,3 +4,5 @@ drawRobot.js
 gun.js
 projectile.js
 samusProjectileView.js
+scorpionLogic.js
+enemyDraw.js

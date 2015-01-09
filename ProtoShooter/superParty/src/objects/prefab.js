@@ -85,7 +85,7 @@ Prefab.instantiate = function(def)
     {
         for( var i in def.renderers)
         {
-            renderers[i].message
+            //renderers[i].message();
         }
          gameObject.message("draw", e);
     }

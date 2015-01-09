@@ -19,7 +19,9 @@ function init()
     Resources.addImage('basicTile', 'ProtoShooter/res/basic-tile.png');
     Resources.addImage('heroSprite', 'ProtoShooter/res/robot-sprite.png');
     Resources.addImage('samusProjectile', 'ProtoShooter/res/samus-projectile.png');
-	
+    Resources.addImage('clamSprite', 'ProtoShooter/res/clam-sprite.png');
+    Resources.addImage('scorpionSprite', 'ProtoShooter/res/scorpion-sprite.png');
+    
 	Resources.startLoad();
 }
 function startGame(e)
@@ -30,15 +32,17 @@ function startGame(e)
     canvas.width = 600;
     canvas.height = 350;
     
-    FileLoader.readFile("ProtoShooter/res/levelDef.txt", levelLoaded);
+    
     
     var level;
     var levelRows;
 
 	Looper.addEventListener(Looper.EVENT_DRAW_TICK, draw);
     Looper.addEventListener(Looper.EVENT_LOGIC_TICK, update);
+    
+    FileLoader.readFile("ProtoShooter/res/levelDef.txt", levelLoaded);
 	
-	//Physics.startDebugDraw();
+	Physics.startDebugDraw();
 	
 	function draw()
     {
@@ -105,6 +109,11 @@ function startGame(e)
                             case 'A':
                                 Physics.bodies.getBox({collisionGroup:"ground", height:levelTileSize, width:levelTileSize, static:true, transform:{position:{x:j*levelTileSize, y:i*levelTileSize}}});
                                // context.drawImage(R.drawable.basicTile, 0, 0, levelTileSize, levelTileSize, j*levelTileSize, i*levelTileSize, levelTileSize, levelTileSize);
+                                break;
+                            case 'X':
+                                var enemy = Prefab.instantiate(Prefab.prefabs['scorpion']);
+                                enemy.body.transform.setPosition(j*levelTileSize, i*levelTileSize - 30);
+                                break;
                     }
                 }
             }
