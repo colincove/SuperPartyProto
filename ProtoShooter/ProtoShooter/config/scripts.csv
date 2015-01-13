@@ -6,3 +6,4 @@ projectile.js
 samusProjectileView.js
 scorpionLogic.js
 enemyDraw.js
+health.js

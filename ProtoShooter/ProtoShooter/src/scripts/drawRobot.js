@@ -10,7 +10,7 @@ function draw(e)
     var tileSize = 128;
     var canvas 	= Stage.canvas;
     var context = Stage.superContext;
- 
+    var crouchOffset = gameObject.isCrouching ? -40:0;
    if(gameObject.dir ==1)
    {
        flipOffset = 0;
@@ -42,5 +42,5 @@ function draw(e)
         frame = 1;
         }
     
-    context.drawImage(R.drawable.heroSprite, (frame-1)*tileSize, flipOffset, tileSize, tileSize, gameObject.body.transform.position.x+xOffset, gameObject.transform.position.y+yOffset, tileSize, tileSize);
+    context.drawImage(R.drawable.heroSprite, (frame-1)*tileSize, flipOffset, tileSize, tileSize, gameObject.body.transform.position.x+xOffset, gameObject.transform.position.y+yOffset + crouchOffset, tileSize, tileSize);
 }

@@ -5,7 +5,8 @@ var jumpRepeat = 0;
 var jumpRepeatMax = 20;
 var fric = 1;
 var jumpRepeatStrength = 6;
-var jumpStrength = 5;
+var jumpStrength = 30;
+var originalHeight;
 var directionInput = Input.getStandardDirectionInput({wasd:true});
 function update(e)
 {
@@ -38,7 +39,7 @@ function update(e)
         jumpRepeat++;
     } else if(jumpRepeat < jumpRepeatMax && jumpRepeat != 0)
         {
-            jump(jumpRepeatStrength);
+            //jump(jumpRepeatStrength);
             jumpRepeat++;
         }
     }
@@ -46,11 +47,23 @@ function update(e)
     {
         jumpRepeat = 0;
     }
-    gameObject.isCrouching = false;
+    
     if(directionInput.down.isDown)
     {
-        gameObject.body.transform.applyForce(0, acc);
-        gameObject.isCrouching = true;
+        if(!gameObject.isCrouching && canJump())
+        {
+           gameObject.body.height = 40; 
+            gameObject.body.transform.move(0, 60);
+            gameObject.body.transform.applyForce(0, 0);
+            gameObject.isCrouching = true;
+        }
+       
+    }else{
+        if(gameObject.isCrouching)
+        {
+            gameObject.body.height = originalHeight; 
+        }
+        gameObject.isCrouching = false;
     }
     gameObject.isRunning = false;
     if(directionInput.right.isDown && !directionInput.down.isDown)
@@ -67,7 +80,6 @@ function update(e)
         gameObject.body.fric = 1;
         gameObject.body.transform.applyForce(-acc, 0);
     }
-
 }
 function canJump()
 {
@@ -84,6 +96,14 @@ function canJump()
 
 function jump(strength)
 {
-    gameObject.body.transform.setVelocity(gameObject.body.transform.velocity.x, -strength);
+    gameObject.body.transform.applyForce(0, -strength);
    // gameObject.body.transform.applyForce(0, -strength);
+}
+function doDamage(e)
+{
+    gameObject.hurt = true;
+}
+function Setup(e)
+{
+    originalHeight = gameObject.body.height;
 }

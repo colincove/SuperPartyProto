@@ -115,11 +115,11 @@ Prefab.instantiate = function(def)
     }
     function onCollide(e)
     {
-        gameObject.message("CollisionOnEnter", {});
+        gameObject.message("CollisionOnEnter", e);
     }
     function onExit(e)
     {
-        gameObject.message("CollisionOnExit", {});
+        gameObject.message("CollisionOnExit", e);
     }
     
     if(gameObject.body) gameObject.body.gameObject = gameObject;

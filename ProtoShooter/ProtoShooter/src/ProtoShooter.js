@@ -1,6 +1,8 @@
 SuperParty.onSetupComplete = doSetup;
 SuperParty.projectName = "ProtoShooter";
 
+var hero;
+
 var levelTileSize = 56;
 var splashStarted = false;
 
@@ -47,9 +49,9 @@ function startGame(e)
 	function draw()
     {
 		//reset canvas
-		Stage.context.rect(0,0,canvas.width,canvas.height);
-		context.setFillStyle="black";
-		context.fill();
+		   Stage.context.rect(0,0,canvas.width,canvas.height);
+		 Stage.context.fillStyle = "black";
+		Stage.context.fill();
         
         if(levelRows)
         {
@@ -117,13 +119,28 @@ function startGame(e)
                     }
                 }
             }
+         Looper.addEventListener(Looper.EVENT_DRAW_TICK, drawHurt);
     }
     //var testObj = Prefab.instantiate(Prefab.prefabs['testPrefab']);
-    var hero = Prefab.instantiate(Prefab.prefabs['hero']); 
+    hero = Prefab.instantiate(Prefab.prefabs['hero']); 
     
     
     hero.body.transform.setPosition(0, -300);
     
      Stage.cam.x = (hero.body.transform.position.x+camOffset.x)-Stage.canvas.width/2;
         Stage.cam.y = (hero.body.transform.position.y+camOffset.y)-Stage.canvas.height/2;
+    
+   
+}
+function drawHurt(e)
+{
+    var canvas 	= Stage.canvas;
+    var context = Stage.superContext;
+    if(hero.hurt)
+    {
+        Stage.context.rect(0,0,canvas.width,canvas.height);
+		 Stage.context.fillStyle = 'rgba(193, 0, 0, 100)';
+		Stage.context.fill();
+        hero.hurt = false;
+    }
 }

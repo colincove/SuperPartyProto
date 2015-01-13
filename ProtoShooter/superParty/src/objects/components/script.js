@@ -28,7 +28,7 @@ Components.createScript = function(scriptName, gameObject, config)
     script.message = function(msg, data)
     {
         //data needs to be in JSON form
-        var stringData = JSON.stringify(data);
+        
         var call = msg + "(data);";
         try
         {

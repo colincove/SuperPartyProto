@@ -5,6 +5,7 @@ var projectile;//prefab name
 var spawnX = 0;
 var spawnY = 0;
 var cooldown = 0;//milliseconds
+var targetGroup;//string 
 var lastShot = 0;
 function Setup()
 {
@@ -23,6 +24,7 @@ function shoot()
 {
     var bullet = Prefab.instantiate(Prefab.prefabs[projectile]);
     bullet.dir = gameObject.dir;
+    bullet.targetGroup = targetGroup;
     bullet.body.transform.setPosition(gameObject.body.transform.position.x + spawnX * gameObject.dir, gameObject.body.transform.position.y + spawnY);
     if(bullet.dir == -1)
     {
