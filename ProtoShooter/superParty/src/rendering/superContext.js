@@ -46,11 +46,13 @@ function setupSuperContext(context)
 	ctx.setMiterLimit 	= function(val){Stage.context.fillStyle = val;this.fillStyle = val;};
 
 	//Rectangles
-	ctx.rect = function()
+	ctx.rect = function(x, y, width, height)
 	{
+        Stage.context.rect(x-Stage.cam.x, y-Stage.cam.y, width, height);
 	}
-	ctx.fillRect = function()
+	ctx.fillRect = function(x, y, width, height)
 	{
+        Stage.context.fillRect(x-Stage.cam.x, y-Stage.cam.y, width, height);
 	}
 	ctx.strokeRect = function()
 	{

@@ -10,7 +10,7 @@ var camOffset = {x:30, y:20};
 
 function doSetup()
 {
-	SuperParty.loadScripts(init, ['ProtoShooter/src/DemoLevel.js', 'ProtoShooter/src/splashEffect.js']);
+	SuperParty.loadScripts(init, ['ProtoShooter/src/DemoLevel.js', 'ProtoShooter/src/splashEffect.js', 'ProtoShooter/src/samusCamera.js']);
 }
 function init()
 {
@@ -34,7 +34,7 @@ function startGame(e)
     canvas.width = 600;
     canvas.height = 350;
     
-    
+    Physics.gravity.y = 0.55;
     
     var level;
     var levelRows;
@@ -44,7 +44,9 @@ function startGame(e)
     
     FileLoader.readFile("ProtoShooter/res/levelDef.txt", levelLoaded);
 	
-	Physics.startDebugDraw();
+	//Physics.startDebugDraw();
+    
+    
 	
 	function draw()
     {
@@ -89,8 +91,8 @@ function startGame(e)
 		if(hero.body.transform.position.y > 0 && !splashStarted)
         {
             splashStarted = true;
-            SplashEffect.start();
-            hero.body.transform.setVelocity(0, -3);
+            
+            //hero.body.transform.setVelocity(0, -3);
             //hero.body.transform.velocity.y = hero.body.transform.velocity.y*0.0;
         }
     }
@@ -109,7 +111,7 @@ function startGame(e)
                     switch(char)
                     {
                             case 'A':
-                                Physics.bodies.getBox({collisionGroup:"ground", height:levelTileSize, width:levelTileSize, static:true, transform:{position:{x:j*levelTileSize, y:i*levelTileSize}}});
+                                Physics.bodies.getBox({collisionGroup:"ground", height:levelTileSize, width:levelTileSize, static:true, transform:{position:{x:j*levelTileSize, y:i*levelTileSize}}, fric:1.1});
                                // context.drawImage(R.drawable.basicTile, 0, 0, levelTileSize, levelTileSize, j*levelTileSize, i*levelTileSize, levelTileSize, levelTileSize);
                                 break;
                             case 'X':
@@ -121,15 +123,19 @@ function startGame(e)
             }
          Looper.addEventListener(Looper.EVENT_DRAW_TICK, drawHurt);
     }
+    var caverns = Prefab.instantiate(Prefab.prefabs['caverns']);
     //var testObj = Prefab.instantiate(Prefab.prefabs['testPrefab']);
     hero = Prefab.instantiate(Prefab.prefabs['hero']); 
     
     
     hero.body.transform.setPosition(0, -300);
     
-     Stage.cam.x = (hero.body.transform.position.x+camOffset.x)-Stage.canvas.width/2;
-        Stage.cam.y = (hero.body.transform.position.y+camOffset.y)-Stage.canvas.height/2;
+    Stage.cam.x = (hero.body.transform.position.x+camOffset.x)-Stage.canvas.width/2;
+    Stage.cam.y = (hero.body.transform.position.y+camOffset.y)-Stage.canvas.height/2;
     
+    
+    SplashEffect.start();
+    createSamusCamera(hero);
    
 }
 function drawHurt(e)

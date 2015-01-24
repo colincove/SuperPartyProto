@@ -39,7 +39,7 @@ Prefab.instantiate = function(def)
         for(var i in triggers)
         {
             var trigger = triggers[i];
-            gameObject.triggers[i] = Physics.bodies.getBody(bodyDef.type, $.extend(trigger.config, {isTrigger:true}));
+            gameObject.triggers[i] = Physics.bodies.getBody(trigger.type, $.extend(trigger.config, {isTrigger:true}));
         }
     }
     

@@ -1,6 +1,6 @@
 {
     body:{type:BodyTypes.BOX,
-        config:{collisionGroup:"hero", width:55, height:90, isTrigger:false, damp:0.2}
+        config:{collisionGroup:"hero", width:55, height:90, drag:1, fric:3}
     },
     scripts:{
         samusController:{}, stiffTriggerFollow:{xOffset:20, yOffset:78}, drawRobot:{}, gun:{key:80, spawnX:60, spawnY:20, cooldown:250, projectile:"samusBullet", targetGroup:"enemy"}, health:{health:10}

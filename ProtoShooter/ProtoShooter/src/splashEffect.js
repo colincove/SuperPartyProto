@@ -4,12 +4,13 @@ SplashEffect.wl = 0.3;
 SplashEffect.a = 20;
 SplashEffect.x = 0;
 SplashEffect.waving = false;
+SplashEffect.submerged = false;
 SplashEffect.acc = 1;//.05 - .01
 
 SplashEffect.start = function()
 {
     Looper.addEventListener(Looper.EVENT_DRAW_TICK, SplashEffect.draw);
-    SplashEffect.waving = true;
+    //SplashEffect.waving = true;
 }
 SplashEffect.stop = function()
 {
@@ -17,6 +18,8 @@ SplashEffect.stop = function()
 }
 SplashEffect.draw = function(e)
 {
+    if(!SplashEffect.submerged) return;
+    
     var context = Stage.context;
     var imageData = context.getImageData( 0, 0, Stage.canvas.width, Stage.canvas.height );
     var pixels = imageData.data;
@@ -35,6 +38,8 @@ SplashEffect.draw = function(e)
     
     if(SplashEffect.a < 0.1) SplashEffect.waving = false;
     SplashEffect.x+=SplashEffect.acc;
+    
+   
     
     for(var i = 0; i < pixels.length; i+=16)
     {
@@ -82,5 +87,11 @@ SplashEffect.draw = function(e)
 }
 SplashEffect.splash = function()
 {
+   SplashEffect.waving = true;
+    SplashEffect.submerged = true;
+    SplashEffect.wl = 0.3;
+SplashEffect.a = 20;
+SplashEffect.x = 0;
+SplashEffect.acc = 1;//.05 - .01
     
 }
