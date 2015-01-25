@@ -37,7 +37,7 @@ function update(e)
   
     if(directionInput.up.isDown)
     {
-        if(canJump() && !holdingJump)
+        if(canJump() && !holdingJump && !(hero.carrying && !SplashEffect.submerged))
         {
             jump(jumpStrength);
             jumpRepeat++;
@@ -121,6 +121,7 @@ function update(e)
 }
 function canJump()
 {
+    
     for(var i in footTrigger.collisionTable)
     {
         var body = footTrigger.collisionTable[i];

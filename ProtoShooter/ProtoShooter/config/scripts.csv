@@ -9,3 +9,5 @@ enemyDraw.js
 health.js
 triggerSplash.js
 drawWater.js
+civilianLogic.js
+drawCivilian.js

@@ -44,7 +44,7 @@ function startGame(e)
     
     FileLoader.readFile("ProtoShooter/res/levelDef.txt", levelLoaded);
 	
-	//Physics.startDebugDraw();
+	Physics.startDebugDraw();
     
     
 	
@@ -118,6 +118,10 @@ function startGame(e)
                                 var enemy = Prefab.instantiate(Prefab.prefabs['scorpion']);
                                 enemy.body.transform.setPosition(j*levelTileSize, i*levelTileSize - 30);
                                 break;
+                        case 'R':
+                                var civilian = Prefab.instantiate(Prefab.prefabs['civilian']);
+                                civilian.body.transform.setPosition(j*levelTileSize, i*levelTileSize - 30);
+                                break;
                     }
                 }
             }
@@ -128,7 +132,7 @@ function startGame(e)
     hero = Prefab.instantiate(Prefab.prefabs['hero']); 
     
     
-    hero.body.transform.setPosition(0, -500);
+    hero.body.transform.setPosition(0, -1000);
     
     Stage.cam.x = (hero.body.transform.position.x+camOffset.x)-Stage.canvas.width/2;
     Stage.cam.y = (hero.body.transform.position.y+camOffset.y)-Stage.canvas.height/2;
