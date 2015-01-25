@@ -5,7 +5,7 @@ function createSamusCamera(heroPrefab)
     var offset = {x:0, y:0};
     
     var maxOffset = 100;
-     var maxYOffset = 100;
+     var maxYOffset = 50;
     var offsetVelocity = 5;
     var offsetYVelocity = 2;
     var camOffset = {x:30, y:20};
@@ -21,10 +21,10 @@ function createSamusCamera(heroPrefab)
         {
             offset.x-=offsetVelocity;
         }
-         if(cam.hero.body.transform.velocity.y > 1)
+         if(cam.hero.body.transform.velocity.y > Physics.gravity.y)
         {
             offset.y+=cam.hero.body.transform.velocity.y/offsetYVelocity;
-        }else if(cam.hero.body.transform.velocity.y < -1)
+        }else if(cam.hero.body.transform.velocity.y < -Physics.gravity.y)
         {
             offset.y+=cam.hero.body.transform.velocity.y/offsetYVelocity;
         }

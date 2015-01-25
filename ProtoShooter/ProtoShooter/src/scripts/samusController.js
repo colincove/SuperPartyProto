@@ -3,13 +3,14 @@ var acc = 1.5;
 var maxSpeed = 7;
 var jumpRepeat = 0;
 var jumpRepeatMax = 20;
-var fric = 1.3;
+var fric = 3;
 var jumpRepeatStrength = 20;
-var jumpStrength = 8;
+var jumpStrength = 20;
 var originalHeight;
 var stopJump = false;
 var directionInput = Input.getStandardDirectionInput({wasd:true});
 var gun;
+var holdingJump = false;
 
 function update(e)
 {
@@ -36,11 +37,12 @@ function update(e)
   
     if(directionInput.up.isDown)
     {
-        if(canJump())
+        if(canJump() && !holdingJump)
         {
             jump(jumpStrength);
             jumpRepeat++;
             stopJump = false;
+            holdingJump = true;
         } else if(jumpRepeat < jumpRepeatMax && jumpRepeat != 0)
         {
             //jump(jumpRepeatStrength);
@@ -49,6 +51,7 @@ function update(e)
     }
     else
     {
+        if(canJump())holdingJump = false;
         if(!stopJump && gameObject.isFalling && gameObject.body.transform.velocity.y<0)
         {
             stopJump = true;
@@ -109,7 +112,11 @@ function update(e)
     }
     if(gameObject.isRunning)
     {
-        gameObject.body.fric = fric;
+        gameObject.body.fric = 1;
+    }
+    else
+    {
+         gameObject.body.fric = fric;
     }
 }
 function canJump()

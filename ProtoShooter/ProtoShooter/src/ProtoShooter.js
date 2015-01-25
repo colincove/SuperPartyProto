@@ -34,7 +34,7 @@ function startGame(e)
     canvas.width = 600;
     canvas.height = 350;
     
-    Physics.gravity.y = 0.55;
+    Physics.gravity.y = 0.8;
     
     var level;
     var levelRows;
@@ -128,7 +128,7 @@ function startGame(e)
     hero = Prefab.instantiate(Prefab.prefabs['hero']); 
     
     
-    hero.body.transform.setPosition(0, -300);
+    hero.body.transform.setPosition(0, -500);
     
     Stage.cam.x = (hero.body.transform.position.x+camOffset.x)-Stage.canvas.width/2;
     Stage.cam.y = (hero.body.transform.position.y+camOffset.y)-Stage.canvas.height/2;
