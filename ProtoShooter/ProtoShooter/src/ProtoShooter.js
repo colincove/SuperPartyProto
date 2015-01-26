@@ -44,7 +44,7 @@ function startGame(e)
     
     FileLoader.readFile("ProtoShooter/res/levelDef.txt", levelLoaded);
 	
-	Physics.startDebugDraw();
+	//Physics.startDebugDraw();
     
     
 	
@@ -127,6 +127,8 @@ function startGame(e)
             }
          Looper.addEventListener(Looper.EVENT_DRAW_TICK, drawHurt);
     }
+     var elevator = Prefab.instantiate(Prefab.prefabs['elevator']);
+    elevator.body.transform.setPosition(30 * levelTileSize, 3*levelTileSize - elevator.body.getHeight());
     var caverns = Prefab.instantiate(Prefab.prefabs['caverns']);
     //var testObj = Prefab.instantiate(Prefab.prefabs['testPrefab']);
     hero = Prefab.instantiate(Prefab.prefabs['hero']); 

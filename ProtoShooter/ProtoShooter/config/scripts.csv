@@ -11,3 +11,5 @@ triggerSplash.js
 drawWater.js
 civilianLogic.js
 drawCivilian.js
+elevatorLogic.js
+drawElevator.js

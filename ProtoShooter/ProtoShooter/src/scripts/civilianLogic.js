@@ -27,6 +27,10 @@ function onCollideExit(e)
 }
 function destroy(e)
 {
+    if(hero.carrying == gameObject)
+    {
+        hero.carrying = null;
+    }
      input.removeEventListener(Input.EVENT_KEY_DOWN, onKeyDown);
     areaTrigger.removeEventListener(Physics.EVENT_ON_ENTER, onCollideEnter);
        areaTrigger.removeEventListener(Physics.EVENT_ON_EXIT, onCollideExit);

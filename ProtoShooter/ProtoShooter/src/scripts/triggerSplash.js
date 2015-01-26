@@ -23,6 +23,7 @@ function Setup(e)
 }
 function CollisionOnEnter(e)
 {
+    if(e.other.collisionGroup != "hero") return;
     if(!firstSplash)
     {
         firstSplash = true;
