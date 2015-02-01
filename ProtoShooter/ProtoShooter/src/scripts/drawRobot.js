@@ -33,7 +33,37 @@ function draw(e)
         {
             frameChange = 0;
             frame++;
+            if(frame == 4 || frame == 6)
+            {
+                 var random = Math.round(Math.random()*4);
+
+                if(random == 0)
+                {
+                     R.audio.foot_stop_underwater_01.pause();
+                    R.audio.foot_stop_underwater_01.currentTime = 0;
+                    R.audio.foot_stop_underwater_01.play();
+                }
+                else if(random == 1)
+                {
+                    R.audio.foot_stop_underwater_02.pause();
+                    R.audio.foot_stop_underwater_02.currentTime = 0;
+                     R.audio.foot_stop_underwater_02.play();
+                }
+                else if(random == 2)
+                {
+                     R.audio.foot_stop_underwater_03.pause();
+                    R.audio.foot_stop_underwater_03.currentTime = 0;
+                     R.audio.foot_stop_underwater_03.play();
+                }
+                else if(random == 3)
+                {
+                     R.audio.foot_stop_underwater_04.pause();
+                    R.audio.foot_stop_underwater_04.currentTime = 0;
+                     R.audio.foot_stop_underwater_04.play();
+                }
+            }
         }
+       
          if(frame<2 || frame >6)
         {
             frame = 3;

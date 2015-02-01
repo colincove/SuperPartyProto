@@ -7,6 +7,7 @@ var spawnY = 0;
 var cooldown = 0;//milliseconds
 var targetGroup;//string 
 var lastShot = 0;
+var soundType; //heroLaser, heroMissile, enemy
 var gunOffsetX = 0, gunOffsetY = 0;
 function Setup()
 {
@@ -35,11 +36,30 @@ function shoot()
     {
         bullet.body.transform.move(0, 40);
     }
+    if(soundType == "heroLaser")
+    {
+        var random = Math.round(Math.random()*3);
+
+        if(random == 0)
+        {
+            R.audio.laser_gun_underwater_01.play();
+        }
+        else if(random == 1)
+        {
+             R.audio.laser_gun_underwater_02.play();
+        }
+        else if(random == 2)
+        {
+             R.audio.laser_gun_underwater_03.play();
+        }
+    
+    }
+   
+    
     
 }
 function SetGunOffset(data)
 {
-    console.log("SetGunOffset");
     gunOffsetX = data.x;
     gunOffsetY = data.y;
 }

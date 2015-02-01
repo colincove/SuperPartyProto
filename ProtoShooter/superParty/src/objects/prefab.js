@@ -11,11 +11,13 @@ Prefab.instantiate = function(def)
     //------------------------------------------------------------------------------//
     
     gameObject.scripts  = {};
+    gameObject.scriptList = new Array();
     var scripts         = def.scripts;
     
     for(var i in scripts)
     {
         gameObject.scripts[i] = Components.createScript(i, gameObject, scripts[i]);
+        gameObject.scriptList.push(gameObject.scripts[i]);
     }
     
     //------------------------------------------------------------------------------//
@@ -59,9 +61,9 @@ Prefab.instantiate = function(def)
     
     gameObject.message = function(msg, data)
     {
-        for(var i in gameObject.scripts)
+        for(var i in gameObject.scriptList)
         {
-            gameObject.scripts[i].message(msg, data);
+            gameObject.scriptList[i].message(msg, data);
         }
     }
         

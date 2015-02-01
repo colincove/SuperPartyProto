@@ -23,10 +23,10 @@ function setupResourcesMethods(Resources)
 		src:src,
 		load:function(callback, onerror)
 		{
-			var audio 			= new Audio();
+			var audio 			= document.createElement('audio');
 			audio.src 			= this.src;
 			R.audio[this.name] 	= audio;
-			audio.onload 		= callback;
+			audio.onloadeddata 	= callback;
 			audio.onerror 		= onerror;
 		}};
 		this.batch.push(loader);

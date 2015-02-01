@@ -24,6 +24,26 @@ function init()
     Resources.addImage('clamSprite', 'ProtoShooter/res/clam-sprite.png');
     Resources.addImage('scorpionSprite', 'ProtoShooter/res/scorpion-sprite.png');
     
+    Resources.addAudio('ambience_cave', 'ProtoShooter/res/sound/Ambience_Cave.wav');
+    Resources.addAudio('ambience_under_water', 'ProtoShooter/res/sound/Ambience_Underwater.wav');
+    
+    Resources.addAudio('foot_stop_underwater_01', 'ProtoShooter/res/sound/Character_Footsteps_Underwater_01.wav');
+    Resources.addAudio('foot_stop_underwater_02', 'ProtoShooter/res/sound/Character_Footsteps_Underwater_02.wav');
+    Resources.addAudio('foot_stop_underwater_03', 'ProtoShooter/res/sound/Character_Footsteps_Underwater_03.wav');
+    Resources.addAudio('foot_stop_underwater_04', 'ProtoShooter/res/sound/Character_Footsteps_Underwater_04.wav');
+    
+    Resources.addAudio('heat_vent', 'ProtoShooter/res/sound/Heat_Vent.wav');
+    
+    Resources.addAudio('laser_gun_underwater_01', 'ProtoShooter/res/sound/Laser_Gun_Underwater_01.wav');
+    Resources.addAudio('laser_gun_underwater_02', 'ProtoShooter/res/sound/Laser_Gun_Underwater_02.wav');
+    Resources.addAudio('laser_gun_underwater_03', 'ProtoShooter/res/sound/Laser_Gun_Underwater_03.wav');
+    
+    Resources.addAudio('scorpion_hit_01', 'ProtoShooter/res/sound/Scorpion_Being_Hit_01.wav');
+    Resources.addAudio('scorpion_hit_02', 'ProtoShooter/res/sound/Scorpion_Being_Hit_02.wav');
+    Resources.addAudio('scorpion_hit_03', 'ProtoShooter/res/sound/Scorpion_Being_Hit_03.wav');
+    
+    Resources.addAudio('water_entry', 'ProtoShooter/res/sound/water_entry.wav');
+    
 	Resources.startLoad();
 }
 function startGame(e)
@@ -142,6 +162,10 @@ function startGame(e)
     
     SplashEffect.start();
     createSamusCamera(hero);
+    
+    R.audio.ambience_cave.play();
+    R.audio.ambience_cave.loop = true;
+    R.audio.ambience_under_water.loop = true;
    
 }
 function drawHurt(e)

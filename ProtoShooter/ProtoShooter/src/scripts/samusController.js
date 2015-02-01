@@ -12,6 +12,10 @@ var directionInput = Input.getStandardDirectionInput({wasd:true});
 var gun;
 var holdingJump = false;
 
+// gun:{key:79, spawnX:60, spawnY:20, cooldown:250, projectile:"samusMissile", targetGroup:"enemy"}
+gameObject.scripts["gun2"] = Components.createScript("gun", gameObject, {key:79, spawnX:60, spawnY:20, cooldown:250, projectile:"samusMissile", targetGroup:"enemy"});
+gameObject.scriptList.push(gameObject.scripts["gun2"]);
+
 function update(e)
 {
     

@@ -17,6 +17,13 @@ Components.createScript = function(scriptName, gameObject, config)
             {
                 eval(i +" = "+config[i]+";");
             }
+            else if (config[i].constructor ===  Array)
+            {
+                eval(i +" = "+config[i]+";");
+            }else if($.isArray(config[i]))
+            {
+                eval(i +" = "+config[i]+";");
+            }
         }
         catch(e)
         {
