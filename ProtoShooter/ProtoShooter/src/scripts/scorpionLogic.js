@@ -46,3 +46,101 @@ function agroExit(e)
         active = false;
     }
 }
+function destroy(e)
+{
+    var random = Math.round(Math.random()*4);
+    
+    if(random == 0)
+    {
+        if(SplashEffect.submerged)
+        {
+            R.audio.scorpion_die_underwater_01.play();
+        }
+        else
+        {
+            R.audio.scorpion_die_01.play();
+        }
+    }
+    else if(random == 1)
+    {
+        if(SplashEffect.submerged)
+        {
+            R.audio.scorpion_die_underwater_02.play();
+        }
+        else
+        {
+            R.audio.scorpion_die_02.play();
+        }
+    }
+    else if(random == 2)
+    {
+        if(SplashEffect.submerged)
+        {
+            R.audio.scorpion_die_underwater_03.play();
+        }
+        else
+        {
+            R.audio.scorpion_die_03.play();
+        }
+    }
+    else if(random == 3)
+    {
+        if(SplashEffect.submerged)
+        {
+            R.audio.scorpion_die_underwater_04.play();
+        }
+        else
+        {
+            R.audio.scorpion_die_04.play();
+        }
+    }
+}
+function shoot(e)
+{
+     var random = Math.round(Math.random()*4);
+    
+    if(random == 0)
+    {
+        if(SplashEffect.submerged)
+        {
+            R.audio.scorpion_attack_underwater_01.play();
+        }
+        else
+        {
+            R.audio.scorpion_attack_01.play();
+        }
+    }
+    else if(random == 1)
+    {
+        if(SplashEffect.submerged)
+        {
+            R.audio.scorpion_attack_underwater_02.play();
+        }
+        else
+        {
+            R.audio.scorpion_attack_02.play();
+        }
+    }
+    else if(random == 2)
+    {
+        if(SplashEffect.submerged)
+        {
+            R.audio.scorpion_attack_underwater_03.play();
+        }
+        else
+        {
+            R.audio.scorpion_attack_03.play();
+        }
+    }
+    else if(random == 3)
+    {
+        if(SplashEffect.submerged)
+        {
+            R.audio.scorpion_attack_underwater_04.play();
+        }
+        else
+        {
+            R.audio.scorpion_attack_04.play();
+        }
+    }
+}

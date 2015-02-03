@@ -14,19 +14,52 @@ function CollisionOnEnter(e)
     {
         if(soundType == "hero")
         {
-            var random = Math.round(Math.random()*3);
+            var random = Math.round(Math.random()*4);
 
         if(random == 0)
         {
-            R.audio.scorpion_hit_01.play();
+            if(SplashEffect.submerged)
+            {
+                R.audio.scorpion_hit_underwater_01.play();
+            }
+            else
+            {
+                R.audio.scorpion_hit_01.play();
+            }
+            
         }
         else if(random == 1)
         {
-             R.audio.scorpion_hit_02.play();
+             if(SplashEffect.submerged)
+            {
+                R.audio.scorpion_hit_underwater_02.play();
+            }
+            else
+            {
+                R.audio.scorpion_hit_02.play();
+            }
         }
         else if(random == 2)
         {
-             R.audio.scorpion_hit_03.play();
+             if(SplashEffect.submerged)
+            {
+                R.audio.scorpion_hit_underwater_03.play();
+            }
+            else
+            {
+                R.audio.scorpion_hit_03.play();
+            }
+        }
+            else if(random == 2)
+        {
+             if(SplashEffect.submerged)
+            {
+                R.audio.scorpion_hit_underwater_04.play();
+            }
+            else
+            {
+                R.audio.scorpion_hit_04.play();
+            }
         }
         }
       e.other.gameObject.message("doDamage", {strength:strength});

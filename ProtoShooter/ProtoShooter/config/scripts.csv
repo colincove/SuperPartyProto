@@ -14,3 +14,8 @@ drawCivilian.js
 elevatorLogic.js
 drawElevator.js
 samusMissileView.js
+healthBar.js
+healthItem.js
+item.js
+missileItem.js
+spawnItems.js

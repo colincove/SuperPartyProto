@@ -36,30 +36,66 @@ function draw(e)
             if(frame == 4 || frame == 6)
             {
                  var random = Math.round(Math.random()*4);
-
+                
                 if(random == 0)
                 {
+                    if(SplashEffect.submerged)
+                    {
+                   
                      R.audio.foot_stop_underwater_01.pause();
                     R.audio.foot_stop_underwater_01.currentTime = 0;
                     R.audio.foot_stop_underwater_01.play();
+                         }else
+                         {
+                              R.audio.foot_stop_01.pause();
+                    R.audio.foot_stop_01.currentTime = 0;
+                    R.audio.foot_stop_01.play();
+                         }
                 }
                 else if(random == 1)
                 {
-                    R.audio.foot_stop_underwater_02.pause();
+                  if(SplashEffect.submerged)
+                    {
+                   
+                     R.audio.foot_stop_underwater_02.pause();
                     R.audio.foot_stop_underwater_02.currentTime = 0;
-                     R.audio.foot_stop_underwater_02.play();
+                    R.audio.foot_stop_underwater_02.play();
+                         }else
+                         {
+                              R.audio.foot_stop_02.pause();
+                    R.audio.foot_stop_02.currentTime = 0;
+                    R.audio.foot_stop_02.play();
+                         }
                 }
                 else if(random == 2)
                 {
+                     if(SplashEffect.submerged)
+                    {
+                   
                      R.audio.foot_stop_underwater_03.pause();
                     R.audio.foot_stop_underwater_03.currentTime = 0;
-                     R.audio.foot_stop_underwater_03.play();
+                    R.audio.foot_stop_underwater_03.play();
+                         }else
+                         {
+                              R.audio.foot_stop_03.pause();
+                    R.audio.foot_stop_03.currentTime = 0;
+                    R.audio.foot_stop_03.play();
+                         }
                 }
                 else if(random == 3)
                 {
+                   if(SplashEffect.submerged)
+                    {
+                   
                      R.audio.foot_stop_underwater_04.pause();
                     R.audio.foot_stop_underwater_04.currentTime = 0;
-                     R.audio.foot_stop_underwater_04.play();
+                    R.audio.foot_stop_underwater_04.play();
+                         }else
+                         {
+                              R.audio.foot_stop_04.pause();
+                    R.audio.foot_stop_04.currentTime = 0;
+                    R.audio.foot_stop_04.play();
+                         }
                 }
             }
         }

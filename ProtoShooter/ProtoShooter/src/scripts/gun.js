@@ -42,15 +42,34 @@ function shoot()
 
         if(random == 0)
         {
-            R.audio.laser_gun_underwater_01.play();
+            if(SplashEffect.submerged)
+            {
+                R.audio.laser_gun_underwater_01.play();
+            }
+            else{
+                R.audio.laser_gun_01.play();
+            }
+            
         }
         else if(random == 1)
         {
-             R.audio.laser_gun_underwater_02.play();
+              if(SplashEffect.submerged)
+            {
+                R.audio.laser_gun_underwater_02.play();
+            }
+            else{
+                R.audio.laser_gun_02.play();
+            }
         }
         else if(random == 2)
         {
-             R.audio.laser_gun_underwater_03.play();
+             if(SplashEffect.submerged)
+            {
+                R.audio.laser_gun_underwater_03.play();
+            }
+            else{
+                R.audio.laser_gun_03.play();
+            }
         }
     
     }

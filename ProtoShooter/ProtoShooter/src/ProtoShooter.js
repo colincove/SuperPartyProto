@@ -5,11 +5,18 @@ var hero;
 
 var levelTileSize = 56;
 var splashStarted = false;
-
+var loadingScreen;
+var loadingSpan;
 var camOffset = {x:30, y:20};
 
 function doSetup()
 {
+    loadingScreen = $("<div></div>");
+    loadingSpan = $("<span></span>");
+    loadingSpan.html("Loading");
+    loadingScreen.addClass("loading-screen");
+    loadingScreen.append(loadingSpan);
+    $("#game").append(loadingScreen);
 	SuperParty.loadScripts(init, ['ProtoShooter/src/DemoLevel.js', 'ProtoShooter/src/splashEffect.js', 'ProtoShooter/src/samusCamera.js']);
 }
 function init()
@@ -31,23 +38,55 @@ function init()
     Resources.addAudio('foot_stop_underwater_02', 'ProtoShooter/res/sound/Character_Footsteps_Underwater_02.wav');
     Resources.addAudio('foot_stop_underwater_03', 'ProtoShooter/res/sound/Character_Footsteps_Underwater_03.wav');
     Resources.addAudio('foot_stop_underwater_04', 'ProtoShooter/res/sound/Character_Footsteps_Underwater_04.wav');
+    Resources.addAudio('foot_stop_01', 'ProtoShooter/res/sound/Character_Footsteps_01.wav');
+    Resources.addAudio('foot_stop_02', 'ProtoShooter/res/sound/Character_Footsteps_02.wav');
+    Resources.addAudio('foot_stop_03', 'ProtoShooter/res/sound/Character_Footsteps_03.wav');
+    Resources.addAudio('foot_stop_04', 'ProtoShooter/res/sound/Character_Footsteps_04.wav');
     
     Resources.addAudio('heat_vent', 'ProtoShooter/res/sound/Heat_Vent.wav');
     
     Resources.addAudio('laser_gun_underwater_01', 'ProtoShooter/res/sound/Laser_Gun_Underwater_01.wav');
     Resources.addAudio('laser_gun_underwater_02', 'ProtoShooter/res/sound/Laser_Gun_Underwater_02.wav');
     Resources.addAudio('laser_gun_underwater_03', 'ProtoShooter/res/sound/Laser_Gun_Underwater_03.wav');
+    Resources.addAudio('laser_gun_01', 'ProtoShooter/res/sound/Laser_Gun_01.wav');
+    Resources.addAudio('laser_gun_02', 'ProtoShooter/res/sound/Laser_Gun_02.wav');
+    Resources.addAudio('laser_gun_03', 'ProtoShooter/res/sound/Laser_Gun_03.wav');
     
+Resources.addAudio('scorpion_hit_underwater_01', 'ProtoShooter/res/sound/Scorpion_Being_Hit_Underwater_01.wav');
+    Resources.addAudio('scorpion_hit_underwater_02', 'ProtoShooter/res/sound/Scorpion_Being_Hit_Underwater_02.wav');
+    Resources.addAudio('scorpion_hit_underwater_03', 'ProtoShooter/res/sound/Scorpion_Being_Hit_Underwater_03.wav');
+    Resources.addAudio('scorpion_hit_underwater_04', 'ProtoShooter/res/sound/Scorpion_Being_Hit_Underwater_04.wav');
     Resources.addAudio('scorpion_hit_01', 'ProtoShooter/res/sound/Scorpion_Being_Hit_01.wav');
     Resources.addAudio('scorpion_hit_02', 'ProtoShooter/res/sound/Scorpion_Being_Hit_02.wav');
     Resources.addAudio('scorpion_hit_03', 'ProtoShooter/res/sound/Scorpion_Being_Hit_03.wav');
+    Resources.addAudio('scorpion_hit_04', 'ProtoShooter/res/sound/Scorpion_Being_Hit_04.wav');
     
-    Resources.addAudio('water_entry', 'ProtoShooter/res/sound/water_entry.wav');
+     Resources.addAudio('scorpion_die_underwater_01', 'ProtoShooter/res/sound/Scorpion_Die_Underwater_01.wav');
+     Resources.addAudio('scorpion_die_underwater_02', 'ProtoShooter/res/sound/Scorpion_Die_Underwater_02.wav');
+     Resources.addAudio('scorpion_die_underwater_03', 'ProtoShooter/res/sound/Scorpion_Die_Underwater_03.wav');
+     Resources.addAudio('scorpion_die_underwater_04', 'ProtoShooter/res/sound/Scorpion_Die_Underwater_04.wav');
+     Resources.addAudio('scorpion_die_01', 'ProtoShooter/res/sound/Scorpion_Dying_01.wav');
+     Resources.addAudio('scorpion_die_02', 'ProtoShooter/res/sound/Scorpion_Dying_02.wav');
+     Resources.addAudio('scorpion_die_03', 'ProtoShooter/res/sound/Scorpion_Dying_03.wav');
+     Resources.addAudio('scorpion_die_04', 'ProtoShooter/res/sound/Scorpion_Dying_04.wav');
+    
+    Resources.addAudio('scorpion_attack_underwater_01', 'ProtoShooter/res/sound/Scorpion_Attack_Underwater_01.wav');
+Resources.addAudio('scorpion_attack_underwater_02', 'ProtoShooter/res/sound/Scorpion_Attack_Underwater_02.wav');
+Resources.addAudio('scorpion_attack_underwater_03', 'ProtoShooter/res/sound/Scorpion_Attack_Underwater_03.wav');
+Resources.addAudio('scorpion_attack_underwater_04', 'ProtoShooter/res/sound/Scorpion_Attack_Underwater_04.wav');
+    Resources.addAudio('scorpion_attack_01', 'ProtoShooter/res/sound/Scorpion_Attack_01.wav');
+Resources.addAudio('scorpion_attack_02', 'ProtoShooter/res/sound/Scorpion_Attack_02.wav');
+Resources.addAudio('scorpion_attack_03', 'ProtoShooter/res/sound/Scorpion_Attack_03.wav');
+Resources.addAudio('scorpion_attack_04', 'ProtoShooter/res/sound/Scorpion_Attack_04.wav');
+    
+    Resources.addAudio('water_entry', 'ProtoShooter/res/sound/Water_Entry.wav');
     
 	Resources.startLoad();
 }
 function startGame(e)
 {    
+   loadingScreen.hide();
+    
 	var canvas 	= Stage.canvas;
     var context = Stage.superContext;
     
