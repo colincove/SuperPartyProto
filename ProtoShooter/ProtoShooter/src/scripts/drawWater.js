@@ -1,4 +1,4 @@
-var padding = 400;
+var padding = 200;
 function draw(e)
 {
     //if(SplashEffect.submerged)return;
@@ -7,12 +7,15 @@ function draw(e)
     {
           for(var i in gameObject.triggers)
         {
-
             Stage.superContext.setFillStyle("rgb(52, 56, 95)");
+           /* Stage.superContext.setFillStyle("rgb(52, 56, 95)");
             Stage.superContext.fillRect(gameObject.triggers[i].transform.position.x - padding, gameObject.triggers[i].transform.position.y - padding, gameObject.triggers[i].getWidth() + padding, padding);
             Stage.superContext.fillRect(gameObject.triggers[i].transform.position.x +gameObject.triggers[i].getWidth(), gameObject.triggers[i].transform.position.y - padding, padding, gameObject.triggers[i].getHeight() + padding);
              Stage.superContext.fillRect(gameObject.triggers[i].transform.position.x, gameObject.triggers[i].transform.position.y + gameObject.triggers[i].getHeight(), gameObject.triggers[i].getWidth() + padding, padding);
-             Stage.superContext.fillRect(gameObject.triggers[i].transform.position.x - padding, gameObject.triggers[i].transform.position.y, padding, gameObject.triggers[i].getHeight() + padding);
+             Stage.superContext.fillRect(gameObject.triggers[i].transform.position.x - padding, gameObject.triggers[i].transform.position.y, padding, gameObject.triggers[i].getHeight() + padding);*/
+            
+             Stage.superContext.fillRect(gameObject.triggers[i].transform.position.x - padding, gameObject.triggers[i].transform.position.y + gameObject.triggers[i].getHeight(), gameObject.triggers[i].getWidth() + padding * 2, padding);
+            
              //Stage.superContext.fillRect(0,0, 100, 100);
             //sStage.superContext.fill();
         }

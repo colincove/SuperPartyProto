@@ -127,6 +127,7 @@ function startGame(e)
                     switch(char)
                     {
                             case 'A':
+                            case 'a':
                                 context.drawImage(R.drawable.basicTile, 0, 0, levelTileSize, levelTileSize, j*levelTileSize, i*levelTileSize, levelTileSize, levelTileSize);
                             break;
                              case 'B':
@@ -187,13 +188,13 @@ function startGame(e)
          Looper.addEventListener(Looper.EVENT_DRAW_TICK, drawHurt);
     }
      var elevator = Prefab.instantiate(Prefab.prefabs['elevator']);
-    elevator.body.transform.setPosition(30 * levelTileSize, 3*levelTileSize - elevator.body.getHeight());
+    elevator.body.transform.setPosition(34 * levelTileSize, 24*levelTileSize - elevator.body.getHeight());
     var caverns = Prefab.instantiate(Prefab.prefabs['caverns']);
     //var testObj = Prefab.instantiate(Prefab.prefabs['testPrefab']);
     hero = Prefab.instantiate(Prefab.prefabs['hero']); 
     
     
-    hero.body.transform.setPosition(0, -1000);
+    hero.body.transform.setPosition(100, -1000);
     
     Stage.cam.x = (hero.body.transform.position.x+camOffset.x)-Stage.canvas.width/2;
     Stage.cam.y = (hero.body.transform.position.y+camOffset.y)-Stage.canvas.height/2;
