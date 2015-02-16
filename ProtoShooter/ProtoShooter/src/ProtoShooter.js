@@ -71,13 +71,20 @@ Resources.addAudio('scorpion_hit_underwater_01', 'ProtoShooter/res/sound/Scorpio
      Resources.addAudio('scorpion_die_04', 'ProtoShooter/res/sound/Scorpion_Dying_04.wav');
     
     Resources.addAudio('scorpion_attack_underwater_01', 'ProtoShooter/res/sound/Scorpion_Attack_Underwater_01.wav');
-Resources.addAudio('scorpion_attack_underwater_02', 'ProtoShooter/res/sound/Scorpion_Attack_Underwater_02.wav');
-Resources.addAudio('scorpion_attack_underwater_03', 'ProtoShooter/res/sound/Scorpion_Attack_Underwater_03.wav');
-Resources.addAudio('scorpion_attack_underwater_04', 'ProtoShooter/res/sound/Scorpion_Attack_Underwater_04.wav');
+    Resources.addAudio('scorpion_attack_underwater_02', 'ProtoShooter/res/sound/Scorpion_Attack_Underwater_02.wav');
+    Resources.addAudio('scorpion_attack_underwater_03', 'ProtoShooter/res/sound/Scorpion_Attack_Underwater_03.wav');
+    Resources.addAudio('scorpion_attack_underwater_04', 'ProtoShooter/res/sound/Scorpion_Attack_Underwater_04.wav');
     Resources.addAudio('scorpion_attack_01', 'ProtoShooter/res/sound/Scorpion_Attack_01.wav');
-Resources.addAudio('scorpion_attack_02', 'ProtoShooter/res/sound/Scorpion_Attack_02.wav');
-Resources.addAudio('scorpion_attack_03', 'ProtoShooter/res/sound/Scorpion_Attack_03.wav');
-Resources.addAudio('scorpion_attack_04', 'ProtoShooter/res/sound/Scorpion_Attack_04.wav');
+    Resources.addAudio('scorpion_attack_02', 'ProtoShooter/res/sound/Scorpion_Attack_02.wav');
+    Resources.addAudio('scorpion_attack_03', 'ProtoShooter/res/sound/Scorpion_Attack_03.wav');
+    Resources.addAudio('scorpion_attack_04', 'ProtoShooter/res/sound/Scorpion_Attack_04.wav');
+    
+    Resources.addAudio('character_being_hit_01', 'ProtoShooter/res/sound/Character_Being_Hit_01.wav');
+    Resources.addAudio('character_being_hit_02', 'ProtoShooter/res/sound/Character_Being_Hit_02.wav');
+    Resources.addAudio('character_being_hit_03', 'ProtoShooter/res/sound/Character_Being_Hit_03.wav');
+    Resources.addAudio('character_being_hit_underwater_01', 'ProtoShooter/res/sound/Character_Being_Hit_Underwater_01.wav');
+    Resources.addAudio('character_being_hit_underwater_02', 'ProtoShooter/res/sound/Character_Being_Hit_Underwater_02.wav');
+    Resources.addAudio('character_being_hit_underwater_03', 'ProtoShooter/res/sound/Character_Being_Hit_Underwater_03.wav');
     
     Resources.addAudio('water_entry', 'ProtoShooter/res/sound/Water_Entry.wav');
     

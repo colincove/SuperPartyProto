@@ -7,7 +7,7 @@ function update(e)
 }
 function CollisionOnEnter(e)
 {
-    
+ //character_being_hit_01   
     
     
     if(e.other.collisionGroup == gameObject.targetGroup)
@@ -61,6 +61,46 @@ function CollisionOnEnter(e)
                 R.audio.scorpion_hit_04.play();
             }
         }
+        }
+        else if(soundType == "enemy")
+        {
+            var random = Math.round(Math.random()*4);
+
+        if(random == 0)
+        {
+            if(SplashEffect.submerged)
+            {
+                R.audio.character_being_hit_underwater_01.play();
+            }
+            else
+            {
+                R.audio.character_being_hit_01.play();
+            }
+            
+        }
+        else if(random == 1)
+        {
+             if(SplashEffect.submerged)
+            {
+                R.audio.character_being_hit_underwater_02.play();
+            }
+            else
+            {
+                R.audio.character_being_hit_02.play();
+            }
+        }
+        else if(random == 2)
+        {
+             if(SplashEffect.submerged)
+            {
+                R.audio.character_being_hit_underwater_03.play();
+            }
+            else
+            {
+                R.audio.character_being_hit_03.play();
+            }
+        }
+           
         }
       e.other.gameObject.message("doDamage", {strength:strength});
     }
